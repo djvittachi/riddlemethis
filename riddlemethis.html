@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riddle Page</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #111;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .riddle-container {
+      padding: 20px;
+      border: 2px solid #fff;
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.7);
+      width: 90%;
+      max-width: 500px;
+    }
+
+    h1.riddle-text {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    }
+
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 2px solid #fff;
+      width: 80%;
+      max-width: 350px;
+      background-color: transparent;
+      color: #fff;
+      margin-bottom: 15px;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    input:focus {
+      background-color: #444;
+      outline: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .clue-text {
+      font-size: 1.5rem;
+      margin-top: 10px;
+    }
+
+    .feedback {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #ff6b6b;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .riddle-container {
+        width: 90%;
+      }
+
+      h1.riddle-text {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="riddle-container">
+      <h1 class="riddle-text">Enter IP:</h1>
+      <input type="text" id="ip-input" placeholder="Enter your guess..." autofocus>
+      <button onclick="checkAnswer()">Submit</button>
+      <div id="next-clue" class="next-clue hidden">
+        <p class="clue-text">Next Clue: <span id="clue-text">In a room of order, neat and tight,
+A prize is hidden out of sight.
+Not in a chest, nor on a shelf,
+But in a cabinet, cold as steel itself.
+Turquoise in color, not very tall,
+Open the top drawer, and you'll have it all.
+
+Where is the treasure you seek today?
+It waits in the drawer, just one pull away.</span></p>
+      </div>
+      <p id="feedback" class="feedback"></p>
+    </div>
+  </div>
+
+  <script>
+    // Correct IP address to unlock next clue
+    const correctIP = "10.20.56.24";
+
+    function checkAnswer() {
+      const userInput = document.getElementById('ip-input').value;
+
+      if (userInput === correctIP) {
+        document.getElementById('feedback').textContent = "Correct!:";
+        document.getElementById('next-clue').classList.remove('hidden');
+        document.getElementById('ip-input').disabled = true;  // Disable input after correct guess
+      } else {
+        document.getElementById('feedback').textContent = "Incorrect. Try again!";
+      }
+    }
+  </script>
+</body>
+</html>
