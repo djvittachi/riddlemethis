@@ -142,7 +142,6 @@ It waits in the drawer, just one pull away.</span></p>
       const userInput = document.getElementById('ip-input').value;
 
       if (userInput === correctIP) {
-        document.getElementById('feedback').textContent = "Correct!:";
         document.getElementById('next-clue').classList.remove('hidden');
         document.getElementById('ip-input').disabled = true;  // Disable input after correct guess
       } else {
